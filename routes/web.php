@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Admindashboardcontroller;
-
+use App\Http\Controllers\admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,9 @@ Route::get('/', function () {
 });
 //Route::get('dashboard', 'admin\DashboardController@dashboard');
 Route::get('dashboard',[Admindashboardcontroller::class, 'dashboard']);
+Route::get('CreateUser',[UserController::class, 'CreateUser']);
+//Route::post('customRegistration',[UserController::class, 'customRegistration']);
+Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom'); 
+
+Route::get('Userlist',[UserController::class, 'Userlist']);
+Route::get('Addrole',[UserController::class, 'Addrole']);
