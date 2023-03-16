@@ -7,22 +7,22 @@
             @csrf  
             <div class="row">
                     <div class="col-md-6 mb-4">
-                        <input type="text" name="name" id="name" placeholder="الإسم" class="search_input product_input input_number" required >
+                        <input type="text" name="name" id="name" placeholder="الإسم" class="search_input product_input input_number"  required>
                     </div>
                     <div class="col-md-6 mb-4">
-                        <input type="number" name="" id="" placeholder="رقم الهاتف" class="search_input product_input input_number" required>  
+                        <input type="number" name="phoneno" id="phoneno" placeholder="رقم الهاتف" class="search_input product_input input_number" required>  
                     </div>
                     <div class="col-md-12 mb-4">
-                        <input type="email" name="" id="" placeholder="البريد الإلكتروني" class="search_input product_input input_number" required>        
+                        <input type="email" name="email" id="email" placeholder="البريد الإلكتروني" class="search_input product_input input_number" required>        
                     </div>
                     <div class="col-md-6 mb-4">
-                        <input type="password" name="" id="" placeholder="كلمة السر" class="search_input product_input input_number">        
+                        <input type="password" name="password" id="password" placeholder="كلمة السر" class="search_input product_input input_number" required>        
                     </div>
                     <div class="col-md-6 mb-4">
-                        <input type="password" name="" id="" placeholder="تأكيد كلمة السر" class="search_input product_input input_number">        
+                        <input type="password" name="re-password" id="" placeholder="تأكيد كلمة السر" class="search_input product_input input_number" required>        
                     </div>
                     <div class="col-md-12 mb-4">
-                        <select class="nice_select_1 product_input txt_gray txt_start_imp">
+                        <select class="nice_select_1 product_input txt_gray txt_start_imp" name="roleid" required>
                             <option data-display="إختيار الدور">إختيار الدور</option>
                             <option value="1">اختيار 1</option>
                             <option value="2">اختيار 2</option>

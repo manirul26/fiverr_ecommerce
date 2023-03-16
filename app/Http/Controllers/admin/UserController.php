@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use Hash;
+use Session;
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     //
@@ -18,19 +22,29 @@ class UserController extends Controller
     public function Addrole(){
         return view('Admin.Users.Addrole');
     }
+    public function Rolelist()
+    {
+        return view('Admin.Users.Rolelist');
+    }
+    public function Settingpage()
+    {
+        return view('Admin.Users.Setting');
+    }
     public function customRegistration(Request $request)
     {  
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
             'phoneno' => 'required',
-            'password' => 'required|min:6'
-        ]);
+            'roleid' => 'required'
+
+        ]); 
            
         $data = $request->all();
-        $check = $this->create($data);
-         echo §check;
-       // return redirect("dashboard")->withSuccess('You have signed-in');
+       $check = $this->create($data);
+       //  echo §check;
+       return redirect("Userlist")->withSuccess('You have signed-in');
     }
     public function create(array $data)
     {
@@ -38,6 +52,7 @@ class UserController extends Controller
         'name' => $data['name'],
         'email' => $data['email'],
         'phoneno' => $data['phoneno'],
+        'roleid' => $data['roleid'],
         'password' => Hash::make($data['password'])
       ]);
     }    

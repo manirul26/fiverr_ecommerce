@@ -26,3 +26,7 @@ Route::post('custom-registration', [UserController::class, 'customRegistration']
 
 Route::get('Userlist',[UserController::class, 'Userlist']);
 Route::get('Addrole',[UserController::class, 'Addrole']);
+Route::get('Rolelist',[UserController::class, 'Rolelist']);
+Route::get('Settingpage',[UserController::class, 'Settingpage']);
+
+
