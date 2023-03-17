@@ -15,9 +15,9 @@ use App\Http\Controllers\admin\UserController;
 |
 */
 
-Route::get('/', function () {
+ Route::get('/', function () {
     return view('welcome');
-});
+}); 
 //Route::get('dashboard', 'admin\DashboardController@dashboard');
 Route::get('dashboard',[Admindashboardcontroller::class, 'dashboard']);
 Route::get('CreateUser',[UserController::class, 'CreateUser']);

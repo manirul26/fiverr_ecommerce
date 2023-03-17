@@ -18,7 +18,7 @@
                                 <p class="fs_18_sm">7.413.18</p>
                             </div>
                             <div class="general_sg_icon bg_1">
-                                <img src="images/top-arrow.svg" class="user-select-none user_drag_none" alt="">
+                                <img src="{{ asset('Asset/admin/images/top-arrow.svg') }}" class="user-select-none user_drag_none" alt="">
                             </div>
                         </div>
         
@@ -30,7 +30,7 @@
                                 <p class="fs_18_sm">7.413.18</p>
                             </div>
                             <div class="general_sg_icon bg_2">
-                                <img src="images/top-arrow.svg" class="user-select-none user_drag_none" alt="">
+                                <img src="{{ asset('Asset/admin/images/top-arrow.svg') }}" class="user-select-none user_drag_none" alt="">
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                                 <p class="fs_18_sm">7.413.18</p>
                             </div>
                             <div class="general_sg_icon bg_3">
-                                <img src="images/down-arrow.svg" class="user-select-none user_drag_none" alt="">
+                                <img src="{{ asset('Asset/admin/images/down-arrow.svg') }}" class="user-select-none user_drag_none" alt="">
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                                     <div class="col-md-4 col-sm-6 d-flex flex-column justify-content-center align-items-center">
                                         <div class="d_progress_bar1 primary_shadow">
                                             <h3 dir="rtl" class="h5 txt_green mt-2">987.654 دج</h3>
-                                            <img src="images/money-bag 1.png" alt="icon">
+                                            <img src="{{ asset('Asset/admin/images/money-bag 1.png') }}" alt="icon">
                                         </div>
                                         <h3 class="h5 text-center mt-3">إيرادات آخر شهر</h3>
                                     </div>
