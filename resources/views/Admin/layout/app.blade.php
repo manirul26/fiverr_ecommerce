@@ -1,6 +1,6 @@
 @php
     echo $segment1 = Request::segment(1);
-    $pages = array('dashboard', 'CreateUser', 'Settingpage');
+    $pages = array('dashboard', 'CreateUser', 'Settingpage','Userlist');
 @endphp
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -27,15 +27,15 @@
 
 
 <!-- trost -->
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
-alpha/css/bootstrap.css" rel="stylesheet"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
+alpha/css/bootstrap.css" rel="stylesheet">
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 
-<!-- <link rel="stylesheet" type="text/css" 
+<link rel="stylesheet" type="text/css" 
 href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> 
 
 </head>
 <body>
@@ -63,7 +63,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
                 <!-- dashboard-ul -->
                 <ul class="dashboard_sidebar_ul">
                     <li>
-                        <a href="/dashboard" class="@if($segment1=='dashboard') active @endif">
+                        <a href="{{ route('admin.dashboard') }}" class="@if($segment1=='dashboard') active @endif">
                             <span>لوحة التحكم </span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_9_6185)">
@@ -223,8 +223,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
                             </svg>                                
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="@if($segment1=='CreateUser') active @endif">
+                    <li class="sub-menu"> <!-- {{ route('Userlist') }} -->
+                        <a href="#" class="@if($segment1=='Userlist' || $segment1=='CreateUser'|| $segment1=='Addrole' || $segment1=='Rolelist') active @endif">
                             <span>الأدوار Role</span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_9_6194)">
@@ -237,14 +237,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
                                 </defs>
                             </svg>           
                             <ul>
-                                <li><a class="dropdown-item" href="/CreateUser"> Add a user إضافة مستخدم</a></li>
-                                <li><a class="dropdown-item" href="/Userlist">User list قائمة المستخدمين</a></li>
-                                <li><a class="dropdown-item" href="/Addrole">إضافة دور add role</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.CreateUser') }}"> Add a user إضافة مستخدم</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Userlist') }}">User list قائمة المستخدمين</a></li>
+                                <li><a class="dropdown-item" href="{{ route('Rolelist') }}">إضافة دور add role</a></li>
                             </ul>                       
                         </a>
                     </li>
                     <li>
-                        <a href="/Settingpage" class="@if($segment1=='Settingpage') active @endif">
+                        <a href="{{ route('admin.Settingpage') }}" class="@if($segment1=='Settingpage') active @endif">
                             <span>الإعدادات setting </span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_9_6195)">
@@ -277,6 +277,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
         <script>
+            $('.sub-menu ul').hide();
+            $('.sub-menu a').click(function (){
+                $(this).parent('.sub-menu').children('ul').slideToggle("100");
+                $(this).find('.right').toggleClass('');
+            })
+
+
             jQuery("#d_progress1").radialProgress("init", {
                 'size': 130,
                 'fill': 8,

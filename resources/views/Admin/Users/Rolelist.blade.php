@@ -4,7 +4,7 @@
 
 <div class="d-flex align-items-center">
                     <h2 class="h3 mb-sm-5 mb-4 txt_dark_blue">الأدوار</h2>
-                    <a href="/Addrole" class="b_radius_8 add_products_btn mb-sm-5 mb-4 me-sm-4 me-auto"><span class="d-sm-inline d-none">إضافة دور جديد</span> <span class="p_icon d-sm-none d-inline"><i class="fa-solid fa-plus"></i></span></a>
+                    <a href="{{ route('Addrole') }}" class="b_radius_8 add_products_btn mb-sm-5 mb-4 me-sm-4 me-auto"><span class="d-sm-inline d-none">إضافة دور جديد</span> <span class="p_icon d-sm-none d-inline"><i class="fa-solid fa-plus"></i></span></a>
                 </div>
 <!-- @if (session('status'))
 <div class="alert alert-success">

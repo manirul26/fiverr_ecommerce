@@ -15,13 +15,19 @@ class UserController extends Controller
 {
     //
     public function CreateUser(){
-        $query = DB::table('addroles')->latest()->get();
+        $query = Addroles::latest()->get();
         return view('Admin.Users.Create')->with([
             'query' => $query
         ]);
     }
     public function Userlist(){
-        return view('Admin.Users.Userlist');
+        $query = DB::table('users')
+        ->select('users.id','users.name','addroles.rolesname','users.email')
+        ->join('addroles', 'addroles.id', '=', 'users.roleid')
+        ->get();
+        return view('Admin.Users.Userlist')->with([
+            'query' => $query
+        ]);
     }
     public function Addrole(){
         return view('Admin.Users.Addrole');
@@ -72,7 +78,42 @@ class UserController extends Controller
         return redirect()->route("Rolelist")->with('message','Data added Successfully');
 
     }
-    
+
+    public function updateUser(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phoneno' => 'required',
+
+            'roleid' => 'required'
+        ]);
+
+        $query = User::where('id', $id)->findOrFail($id);
+        $query->name = $request->name;
+        $query->email = $request->email;
+        $query->roleid = $request->roleid;
+        $query->phoneno = $request->phoneno;
+
+        if($query->save()){
+            return redirect()->route("Userlist")->with('success','updated successfully.');
+        }
+        return redirect()->back()->with('error', 'Something wrong!');
+    }
+    public function Edituser($id)
+    {
+        $query = User::where('id',$id)->get();
+        $query = DB::table('users')
+        ->select('users.id','users.name','addroles.rolesname','users.email','users.phoneno','users.roleid')
+        ->join('addroles', 'addroles.id', '=', 'users.roleid')
+        ->where('users.id',$id)
+        ->get();
+        $roles = DB::table('addroles')->latest()->get();
+        return view('Admin.Users.Edituser')->with([
+            'query' => $query,
+            'roles' => $roles
+        ]);
+    } 
     public function Addroleedit($id)
     {
         $query = DB::table('addroles')->where('id',$id)->get();
@@ -99,6 +140,25 @@ class UserController extends Controller
             echo "failed";
 
         }
+    }
+    //delete user
+    
+    public function deleteUsers(Request $request)
+    {
+        $id = $request->ids;
+
+            $id = User::whereIn('id',$id)->delete();
+
+            if($id > 0)
+            {
+                echo "delete";
+            }
+            else
+            {
+                echo "failed";
+    
+            }
+       
     }
    
 }
