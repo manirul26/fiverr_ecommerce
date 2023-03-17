@@ -18,7 +18,24 @@
     <!-- Main CSS -->
         <link href="{{ asset('Asset/admin/css/dashboard.css') }}" rel="stylesheet">
         <link href="{{ asset('Asset/admin/css/dashboard-responsive.css') }}" rel="stylesheet">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ -->
+
+
+<!-- trost -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0- 
+alpha/css/bootstrap.css" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" 
+href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> 
 
 </head>
 <body>
@@ -258,6 +275,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <!-- Custom JS -->
         <script src="{{ asset('Assets/admin/js/app.js') }}" defer></script>
+
+
 
         <script>
             jQuery("#d_progress1").radialProgress("init", {

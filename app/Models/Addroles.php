@@ -10,10 +10,22 @@ class Addroles extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
-        'phoneno',
-        'password',
-        'roleid',
+        'rolesname',
+        'modulename',
+        'managmentpower',
+        'teamstats',
+        'followtheteam',
+        'created_at',
+        'updated_at',
+
     ];
+    public function setCategoryAttribute($value)
+    {
+        $this->attributes['modulename'] = json_encode($value);
+    }
+
+    public function getCategoryAttribute($value)
+    {
+        return $this->attributes['modulename'] = json_decode($value);
+    }
 }

@@ -23,11 +23,11 @@
                     </div>
                     <div class="col-md-12 mb-4">
                         <select class="nice_select_1 product_input txt_gray txt_start_imp" name="roleid" required>
-                            <option data-display="إختيار الدور">إختيار الدور</option>
-                            <option value="1">اختيار 1</option>
-                            <option value="2">اختيار 2</option>
-                            <option value="3">اختيار 3</option>
-                            <option value="4">اختيار 4</option>
+                        @foreach($query as $data)
+                      <!--   <option data-display="إختيار الدور">إختيار الدور</option> -->
+                            <option value="{{$data->id}}">{{$data->rolesname}}</option>
+                     
+                        @endforeach
                         </select>
                     </div>
                 </div>

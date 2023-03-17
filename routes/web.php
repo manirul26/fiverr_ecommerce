@@ -23,10 +23,12 @@ Route::get('dashboard',[Admindashboardcontroller::class, 'dashboard']);
 Route::get('CreateUser',[UserController::class, 'CreateUser']);
 //Route::post('customRegistration',[UserController::class, 'customRegistration']);
 Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom'); 
-
-Route::get('Userlist',[UserController::class, 'Userlist']);
+Route::post('add-roles', [UserController::class, 'addRoles'])->name('roles.add'); 
+Route::post('delete-roles', [UserController::class, 'deleteRoles'])->name('roles.delete'); 
+Route::get('Userlist',[UserController::class, 'Userlist'])->name('Userlist');
 Route::get('Addrole',[UserController::class, 'Addrole']);
-Route::get('Rolelist',[UserController::class, 'Rolelist']);
+Route::get('Addroleedit/{id}/edit',[UserController::class, 'Addroleedit']);
+Route::get('Rolelist',[UserController::class, 'Rolelist'])->name('Rolelist');
 Route::get('Settingpage',[UserController::class, 'Settingpage']);
 
 
