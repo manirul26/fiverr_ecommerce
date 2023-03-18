@@ -11,9 +11,35 @@ use Session;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
     //
+    public function adminlogin(){
+       // echo "ddd";
+        return view('Admin.Users.login');
+    }
+    public function customLogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+   
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('dashboard')
+                        ->withSuccess('Signed in');
+        }
+  
+        return redirect("login")->withSuccess('Login details are not valid');
+    }
+    public function signOut() {
+        Session::flush();
+        Auth::logout();
+  
+        return Redirect('admin');
+    }
     public function CreateUser(){
         $query = Addroles::latest()->get();
         return view('Admin.Users.Create')->with([
@@ -29,13 +55,59 @@ class UserController extends Controller
             'query' => $query
         ]);
     }
+
+    public function UserEdit($id){
+        
+        $query = DB::table('users')->where('id', $id)->first();
+
+        return view('Admin.Users.Setting')->with([
+            'query' => $query
+        ]);
+        
+
+    }
+
     public function Addrole(){
         return view('Admin.Users.Addrole');
     }
+    public function updatePassword(Request $request)
+    {
+        try{
 
+            $request->validate([
+                'current_password'=>['required','string','min:8'],
+                'new_password'=>  ['required','string','min:8','confirmed']
+            ]);
+            $userInfo = DB::table('users')->where('id',auth()->id())->first();
+            dd($userInfo);
+            if($userInfo){
+                $oldPassword = Hash::make($request->current_password);
+                if(Hash::check( $request->input('old-password'), $userInfo->password) && $request->input('password') === $request->input('confirm-password')){
+                    DB::table('users')->where('email', $userInfo->email)
+                        ->update(['password' => Hash::make($request->input('password'))]);
+
+                    return redirect('admin/dashboard');
+                }
+                else{
+                    return Redirect::back()->withErrors(['updatePasswordError' => 'Password does not match.']);
+                }
+            }
+        }catch(Exception $e){
+            return $e;
+        }
+    }
     public function Settingpage()
     {
-        return view('Admin.Users.Setting');
+        if(Auth::check()){
+            $query = DB::table('users')->where('id', auth()->id())->get();
+            return view('Admin.Users.Setting')->with([
+                'query' => $query
+            ]);
+
+        }
+  
+        return redirect("admin")->withSuccess('You are not allowed to access');
+       
     }
     public function customRegistration(Request $request)
     {  

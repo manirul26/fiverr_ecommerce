@@ -20,10 +20,12 @@ use App\Http\Controllers\admin\Ordercontroller;
 |
 */
 
- Route::get('/', function () {
-    return view('welcome');
-}); 
+
 //Route::get('dashboard', 'admin\DashboardController@dashboard');
+Route::get('admin',[UserController::class, 'adminlogin'])->name('admin.login');
+Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom'); 
+Route::get('signout', [UserController::class, 'signOut'])->name('signout');
+
 Route::get('dashboard',[Admindashboardcontroller::class, 'dashboard'])->name('admin.dashboard');
 Route::get('CreateUser',[UserController::class, 'CreateUser'])->name('admin.CreateUser');
 //Route::post('customRegistration',[UserController::class, 'customRegistration']);
@@ -69,4 +71,11 @@ Route::get('/admin/addstock',[ProductController::class, 'addstock'])->name('admi
 Route::post('admin/addstock/store', [ProductController::class, 'storeStock'])->name('admin.stockStore');
 
 
+//order
 Route::get('/admin/orderlist',[Ordercontroller::class, 'orderlist'])->name('admin.orderlist');
+
+
+// UserData update
+Route::get('UserEdit/{id}/{edit}',[UserController::class, 'UserEdit']);
+
+Route::post("updatePassword",[UserController::class,'updatePassword'])->name('updatePassword');
