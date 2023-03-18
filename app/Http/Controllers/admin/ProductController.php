@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers\admin;
-
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categories; 
 use App\Models\Addroles;
 use App\Models\Brand;
+use App\Models\Stock;
 use Hash;
 use Session;
 use DB;
@@ -22,6 +22,24 @@ class ProductController extends Controller
         $Product = Product::all();
         return view('admin/Products/list', compact('Product'));
     }
+    public function stocklist()
+    {
+
+        $query = DB::table('products')
+        ->select('products.id','products.productname','stocks.stock','stocks.date',
+        'products.brandid')
+        ->join('stocks', 'stocks.productid', '=', 'products.id')
+        ->get();
+        return view('Admin.Inventory.list')->with([
+            'query' => $query
+        ]);
+    }
+    public function addstock()
+    {
+          // $brand = Brand::with('category')->get();
+          $Product = Product::all();
+          return view('admin/Inventory/Addstock', compact('Product'));
+    }
     public function add()
     {
         $category = Categories::all();
@@ -33,8 +51,24 @@ class ProductController extends Controller
             'category' => $category
         ]);
     }
+    //storeStock
+    public function storeStock(Request $request)
+    {
+
+        $input = $request->all();
+        $input['productid'] = $request->input('productid');
+        $input['stock'] = $request->input('stock');
+        $input['date'] = date('Y-m-d');
+        
+        $input['created_at'] = Carbon::now()->timestamp;      
+        $input['updated_at'] = Carbon::now()->timestamp;  
+        Stock::create($input);
+       return redirect()->route("admin.stocklist")->with('success','Data added Successfully');
+
+    }
     public function storeProduct(Request $request)
     {
+
         $input = $request->all();
         $input['productname'] = $request->input('productname');
         $input['permalink'] = $request->input('permalink');
@@ -60,7 +94,7 @@ class ProductController extends Controller
             $filenameseo = time() . '.' . $ext;
             $fileseo->move('upload/seoimage', $filenameseo);
         }
-        $input['seo_image'] = 'x';
+        $input['seo_image'] = $filenameseo;
         
 
         $input['variablesstatus'] = $request->input('variablesstatus');
@@ -72,13 +106,13 @@ class ProductController extends Controller
         $input['seo_address'] = $request->input('seo_address');
         $input['seo_slug'] = $request->input('seo_slug');
         $input['seo_des'] = $request->input('seo_des');
-        $input['seo_image'] = $request->input('seo_image');
 
 
-        $input['created_at'] = date('Y-m-d');        
-        $input['updated_at'] = date('Y-m-d');   
+
+        $input['created_at'] = Carbon::now()->timestamp;      
+        $input['updated_at'] = Carbon::now()->timestamp;  
         Product::create($input);
-       // return redirect()->route("Rolelist")->with('message','Data added Successfully');
+       return redirect()->route("admin.productlist")->with('success','Data added Successfully');
 
     }
 }

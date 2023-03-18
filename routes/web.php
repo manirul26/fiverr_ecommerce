@@ -5,6 +5,9 @@ use App\Http\Controllers\admin\Admindashboardcontroller;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\Ordercontroller;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +60,13 @@ Route::post('getid-brand', [BrandController::class, 'edit'])->name('brand.getbra
 Route::get('/admin/productlist',[ProductController::class, 'index'])->name('admin.productlist');
 Route::get('/admin/addproduct',[ProductController::class, 'add'])->name('admin.addproductpage');
 Route::post('admin/addproduct/store', [ProductController::class, 'storeProduct'])->name('admin.addproduct');
+
+
+//inventory
+
+Route::get('/admin/stocklist',[ProductController::class, 'stocklist'])->name('admin.stocklist');
+Route::get('/admin/addstock',[ProductController::class, 'addstock'])->name('admin.addstock');
+Route::post('admin/addstock/store', [ProductController::class, 'storeStock'])->name('admin.stockStore');
+
+
+Route::get('/admin/orderlist',[Ordercontroller::class, 'orderlist'])->name('admin.orderlist');

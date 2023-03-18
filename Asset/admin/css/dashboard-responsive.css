@@ -264,6 +264,10 @@
     height: auto;
     aspect-ratio: 1 / 0.5;
   }
+  .drag_file_wrappertwo {
+    height: auto;
+    aspect-ratio: 1 / 0.5;
+  }
   .products_table_wrapper {
     padding-bottom: 50px;
   }

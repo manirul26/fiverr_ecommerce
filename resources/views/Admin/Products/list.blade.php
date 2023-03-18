@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 
 @section('content')
+
 <div class="d-flex align-items-center">
                     <h2 class="h3 mb-sm-5 mb-4 txt_dark_blue">المنتجات</h2>
                     <a href="{{ route('admin.addproductpage') }}" class="b_radius_8 add_products_btn mb-sm-5 mb-4 me-sm-4 me-auto">
@@ -57,15 +58,15 @@
 
                         </div>
                         <div class="py-sm-3 py-2 px-2 pb-0">
-                            <h3 class="h5 fw-bold">كمبيوتر للألعاب</h3>
+                            <h3 class="h5 fw-bold">{{ $data->productname}}</h3>
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <p class="mb-0 fs_18_sm fw-semibold ms-2">السعر :</p>
-                                <p class="mb-0 fw-semibold">1900 دج</p>
+                                <p class="mb-0 fw-semibold">{{ $data->sellingprice}} </p>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-2">
                                 <p class="mb-0 fs_18_sm fw-semibold ms-2">
                                     سعر البيع المقترح :</p>
-                                <p class="mb-0 fw-bold txt_green fs_18_sm">2200 دج</p>
+                                <p class="mb-0 fw-bold txt_green fs_18_sm"> {{ $data->purchasingprice}}</p>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <p class="mb-0 fs_18_sm fw-semibold ms-2">
