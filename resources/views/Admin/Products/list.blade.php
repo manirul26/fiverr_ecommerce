@@ -3,7 +3,10 @@
 @section('content')
 <div class="d-flex align-items-center">
                     <h2 class="h3 mb-sm-5 mb-4 txt_dark_blue">المنتجات</h2>
-                    <button class="b_radius_8 add_products_btn mb-sm-5 mb-4 me-sm-4 me-auto"><span class="d-sm-inline d-none">إضافة منتج جديد</span> <span class="p_icon d-sm-none d-inline"><i class="fa-solid fa-plus"></i></span></button>
+                    <a href="{{ route('admin.addproductpage') }}" class="b_radius_8 add_products_btn mb-sm-5 mb-4 me-sm-4 me-auto">
+                     <span class="d-sm-inline d-none">إضافة منتج جديد</span> 
+                     <span class="p_icon d-sm-none d-inline"><i class="fa-solid fa-plus"></i></span>
+                    </a>
                 </div>
 
                 <div class="parent_product_fillter mb-4">
@@ -46,11 +49,12 @@
 
                 <div class="d_product_grids pb-5">
 
-                
+                   @foreach($Product as $data)
                     <div class="d_product_box primary_shadow b_radius_8 bg-white pb-3">
                         <div class="wrap_product_grid_img">
                             <p class="d_product_badge">جديد</p>
-                            <img class="d_product_img" src="images/d-product-1.png" alt="image">
+                            <img class="d_product_img" src="{{ asset('upload/product/' . $data->productimage) }}" alt="{{ $data->productname}}"  /> 
+
                         </div>
                         <div class="py-sm-3 py-2 px-2 pb-0">
                             <h3 class="h5 fw-bold">كمبيوتر للألعاب</h3>
@@ -79,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
 
 
 

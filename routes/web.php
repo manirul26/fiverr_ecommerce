@@ -55,3 +55,5 @@ Route::post('getid-brand', [BrandController::class, 'edit'])->name('brand.getbra
 //addproduct
 
 Route::get('/admin/productlist',[ProductController::class, 'index'])->name('admin.productlist');
+Route::get('/admin/addproduct',[ProductController::class, 'add'])->name('admin.addproductpage');
+Route::post('admin/addproduct/store', [ProductController::class, 'storeProduct'])->name('admin.addproduct');
