@@ -12,6 +12,11 @@
                 <div class="card" style="margin-top: 50%">
                     <h3 class="card-header text-center">Login</h3>
                     <div class="card-body">
+                    @if ($message = Session::get('success'))
+   <div class="alert alert-success" role="alert">
+    {{ $message }}
+   </div>
+   @endif
                     <form method="POST" action="{{ route('login.custom') }}">
                             @csrf
                             <div class="form-group mb-3">

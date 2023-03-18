@@ -55,7 +55,7 @@
                         <label for="current_pwd" class="fw-semibold fs_18_sm settings_input_label">تأكيد كلمة المرور </label>
                     </div>
                     <div class="col-md-9">
-                        <input type="password" name="confirm_password" id="confirm_password" placeholder="تأكيد كلمة المرور"
+                        <input type="password" name="new_confirm_password" id="new_confirm_password" placeholder="تأكيد كلمة المرور"
                         class="search_input product_input input_number settings_input_pwd">
                     </div>
                 </div>

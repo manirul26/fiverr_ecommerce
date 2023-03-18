@@ -10,7 +10,8 @@ use Hash;
 use Session;
 use DB;
 use Illuminate\Support\Facades\Auth;
-
+use App\Rules\MatchOldPassword;
+//php artisan make:rule MatchOldPassword
 
 class UserController extends Controller
 {
@@ -32,7 +33,7 @@ class UserController extends Controller
                         ->withSuccess('Signed in');
         }
   
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("admin")->with('success','Login details are not valid');
     }
     public function signOut() {
         Session::flush();
@@ -73,8 +74,17 @@ class UserController extends Controller
     public function updatePassword(Request $request)
     {
         try{
-
             $request->validate([
+                'current_password' => ['required', new MatchOldPassword],
+                'new_password' => ['required'],
+                'new_confirm_password' => ['same:new_password'],
+            ]);
+       
+            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+            return redirect("Settingpage")->withSuccess('Update Successfully');
+          //  dd('Password change successfully.');
+
+/*             $request->validate([
                 'current_password'=>['required','string','min:8'],
                 'new_password'=>  ['required','string','min:8','confirmed']
             ]);
@@ -91,7 +101,7 @@ class UserController extends Controller
                 else{
                     return Redirect::back()->withErrors(['updatePasswordError' => 'Password does not match.']);
                 }
-            }
+            } */
         }catch(Exception $e){
             return $e;
         }
