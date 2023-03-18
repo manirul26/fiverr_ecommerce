@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\Admindashboardcontroller;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\BrandController;
+use App\Http\Controllers\admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +41,17 @@ Route::post('Edituser/{id}/edit',[UserController::class, 'updateUser']);
 //Route::get('student/edit-blog/{id}', 'Student\BlogController@edit')->name('student.editBlog');
 //Route::post('student/edit-blog/{id}', 'Student\BlogController@update');
 
+//Brand
+Route::get('/admin/brand/brandlist', [BrandController::class, 'index'])->name('indexBrand');
+Route::get('/admin/brand/add', [BrandController::class, 'indexAddBrand'])->name('indexAddBrand');
+Route::post('admin/brand/store', [BrandController::class, 'storeBrand'])->name('storeBrand');
+Route::get('admin/brand/edit/{id}',[BrandController::class,'EditBrand']);
+//Route::post('admin/brand/update', [BrandController::class,'updateBrand'])->name('updateBrand');
+Route::get('/admin/brand/delete/{id}', [BrandController::class,'brandDelete'])->name('deleteBrand');
+Route::post('delete-brand', [BrandController::class, 'deleteBrand'])->name('brand.delete'); 
+Route::post('getid-brand', [BrandController::class, 'edit'])->name('brand.getbrandid'); 
+//Route::get('admin/brand/edit/{id}',[BrandController::class,'edit']);
 
+//addproduct
+
+Route::get('/admin/productlist',[ProductController::class, 'index'])->name('admin.productlist');

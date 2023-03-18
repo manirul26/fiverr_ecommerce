@@ -116,9 +116,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
                             </ul>                             
                         </a>
                     </li>
-                    <li>
+                    <li class="sub-menu">
                         <a href="#">
-                            <span>المنتجات</span>
+                            <span>Product المنتجات</span>
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_9_6188)">
                                 <path d="M17.5 10.8333V16.6667C17.5 16.8877 17.4122 17.0996 17.2559 17.2559C17.0996 17.4122 16.8877 17.5 16.6667 17.5H3.33332C3.11231 17.5 2.90035 17.4122 2.74407 17.2559C2.58779 17.0996 2.49999 16.8877 2.49999 16.6667V10.8333H1.66666V9.16667L2.49999 5H17.5L18.3333 9.16667V10.8333H17.5ZM4.16666 10.8333V15.8333H15.8333V10.8333H4.16666ZM3.36666 9.16667H16.6333L16.1333 6.66667H3.86666L3.36666 9.16667ZM4.99999 11.6667H11.6667V14.1667H4.99999V11.6667ZM2.49999 2.5H17.5V4.16667H2.49999V2.5Z" fill=""/>
@@ -130,10 +130,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
                                 </defs>
                             </svg>
                             <ul>
-                                <li><a class="dropdown-item" href="#">إضافة منتج جديد</a></li>
-                                <li><a class="dropdown-item" href="#">قائمة العلامات</a></li>
-                                <li><a class="dropdown-item" href="#">إضافة علامة جديدة</a></li>
-                                <li><a class="dropdown-item" href="#">إعدادات المنتجات</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.productlist') }}">إضافة منتج جديد Add New Product</a></li>
+                                <li><a class="dropdown-item" href="{{ route('indexBrand') }}">قائمة العلامات Tag List</a></li>
+                                <li><a class="dropdown-item" href="{{ route('indexAddBrand') }}">إضافة علامة جديدة Add New Tag</a></li>
+                                <li><a class="dropdown-item" href="#">إعدادات المنتجات Product Setting</a></li>
                             </ul>                                      
                         </a>
                     </li>
