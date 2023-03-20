@@ -20,7 +20,7 @@ class ProductController extends Controller
     {
         // $brand = Brand::with('category')->get();
         $Product = Product::all();
-        return view('admin/Products/list', compact('Product'));
+        return view('Admin/Products/list', compact('Product'));
     }
     public function stocklist()
     {
@@ -38,7 +38,7 @@ class ProductController extends Controller
     {
           // $brand = Brand::with('category')->get();
           $Product = Product::all();
-          return view('admin/Inventory/Addstock', compact('Product'));
+          return view('Admin/Inventory/Addstock', compact('Product'));
     }
     public function add()
     {

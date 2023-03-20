@@ -17,13 +17,13 @@ class BrandController extends Controller
     {
         // $brand = Brand::with('category')->get();
         $brand = Brand::all();
-        return view('admin/brand/brandlist', compact('brand'));
+        return view('Admin/brand/brandlist', compact('brand'));
     }
 
     public function indexAddBrand()
     {
         $brand = Brand::all(); 
-        return view('admin/brand/add-brand',compact('brand'));
+        return view('Admin/brand/add-brand',compact('brand'));
     }
 
     public function storeBrand(BrandRequest $request)
@@ -62,7 +62,7 @@ class BrandController extends Controller
    
         $brand = Brand::where('id', $id)->first();
         // $data['category'] = Category::all();
-        return view('admin/brand/edit-brand',['brand' => $brand]);
+        return view('Admin/brand/edit-brand',['brand' => $brand]);
     }
     public function edit(Request $request)
     {
