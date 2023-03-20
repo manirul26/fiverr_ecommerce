@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('Admin.layout.app')
 
 @section('content')
 <h2 class="h3 mb-5">إضافة منتج جديد</h2>

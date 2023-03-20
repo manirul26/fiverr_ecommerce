@@ -1,5 +1,5 @@
 
-@extends('admin.layout.app')
+@extends('Admin.layout.app')
 
 @section('content')
 <div>

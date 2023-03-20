@@ -1,4 +1,4 @@
-@extends('admin.layout.app')
+@extends('Admin.layout.app')
 @section('content')
 <script src="{{ asset('Asset/admin/js/trumbowyg.min.js') }}" defer></script>
 <script src="{{ asset('Asset/admin/js/jquery.nice-select.js') }}"></script>

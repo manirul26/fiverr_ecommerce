@@ -21,6 +21,6 @@ class Ordercontroller extends Controller
     {
         // $brand = Brand::with('category')->get();
         $Orders = Orders::all();
-        return view('admin/order/orderlist', compact('Orders'));
+        return view('Admin/order/orderlist', compact('Orders'));
     }
 }
