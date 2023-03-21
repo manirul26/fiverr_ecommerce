@@ -71,40 +71,92 @@ class UserController extends Controller
     public function Addrole(){
         return view('Admin.Users.Addrole');
     }
+    public function updateProfile(Request $request)
+    {
+        echo $request->profile_input_file;
+
+
+        if($request->profile_input_file == "")
+            {
+                $data = array(
+                    'name' => $request->name
+                );
+                $id = DB::table('users')->where('id',auth()->id())->update($data);
+                if( $id > 0)
+                {
+
+                    return redirect()->back()->with("success","Profile name update successfully");
+
+                }
+                else
+                {
+
+                    return redirect()->back()->with("success","Failed to update password"); 
+                }
+            }
+            else
+            {
+                $file =$request->file('profile_input_file');
+                $ext =$file->getClientOriginalExtension();
+                $profileimage =time().'.'.$ext; 
+                $file->move('upload/profile',$profileimage);
+                  $data = array(
+                  'image' => $profileimage,
+                  'name' => $request->name
+                  );
+                  $id = DB::table('users')->where('id',auth()->id())->update($data);
+                  if($id > 0)
+                  {
+                      return redirect()->route("admin.Settingpage")->with('success','Image update Successfully');
+                  }
+                  else
+                  {
+                   
+
+                    return redirect()->route("admin.Settingpage")->with('success','failed to update');
+                  }
+            }
+
+    }
     public function updatePassword(Request $request)
     {
-        try{
-            $request->validate([
-                'current_password' => ['required', new MatchOldPassword],
-                'new_password' => ['required'],
-                'new_confirm_password' => ['same:new_password'],
-            ]);
-       
-            User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-            return redirect("Settingpage")->withSuccess('Update Successfully');
-          //  dd('Password change successfully.');
+            if (!(Hash::check($request->current_password, Auth::user()->password))) {
+                // The passwords matches
+                return redirect()->back()->with("error","Your current password does not matches with the password.");
+            }
+            if(strcmp($request->current_password, $request->new_password) == 0){
+                // Current password and new password same
+                return redirect()->back()->with("error","New Password cannot be same as your current password.");
+            }
+            if($request->new_password == "" || $request->current_password == "")
+            {
+                return redirect()->back()->with("success","insert the required Fields");
+            }
+            else
+            {
+                $data = array(
+                    'password' => Hash::make($request->new_password)
+                );
+                $id = DB::table('users')->where('id',auth()->id())->update($data);
+                if( $id > 0)
+                {
+                 
 
-/*             $request->validate([
-                'current_password'=>['required','string','min:8'],
-                'new_password'=>  ['required','string','min:8','confirmed']
-            ]);
-            $userInfo = DB::table('users')->where('id',auth()->id())->first();
-            dd($userInfo);
-            if($userInfo){
-                $oldPassword = Hash::make($request->current_password);
-                if(Hash::check( $request->input('old-password'), $userInfo->password) && $request->input('password') === $request->input('confirm-password')){
-                    DB::table('users')->where('email', $userInfo->email)
-                        ->update(['password' => Hash::make($request->input('password'))]);
+                    return redirect()->back()->with("success","Password successfully changed!");
 
-                    return redirect('admin/dashboard');
                 }
-                else{
-                    return Redirect::back()->withErrors(['updatePasswordError' => 'Password does not match.']);
+                else
+                {
+                 
+
+                    return redirect()->back()->with("success","Failed to update password"); 
                 }
-            } */
-        }catch(Exception $e){
-            return $e;
-        }
+
+            }
+               
+            
+               
+
     }
     public function Settingpage()
     {
@@ -198,9 +250,14 @@ class UserController extends Controller
     } 
     public function Addroleedit($id)
     {
+        $allmodule = DB::table('modules')->get();
         $query = DB::table('addroles')->where('id',$id)->get();
+      //  print_r($allmodule);
+
+       // exit;
         return view('Admin.Users.Addroleedit')->with([
-            'query' => $query
+            'query' => $query,
+            'allmodule' => $allmodule
         ]);
     }
     public function Rolelist()

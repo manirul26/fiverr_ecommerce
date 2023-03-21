@@ -85,3 +85,4 @@ Route::get('/admin/orderlist',[Ordercontroller::class, 'orderlist'])->name('admi
 Route::get('UserEdit/{id}/{edit}',[UserController::class, 'UserEdit']);
 
 Route::post("updatePassword",[UserController::class,'updatePassword'])->name('updatePassword');
+Route::post("updateProfile",[UserController::class,'updateProfile'])->name('updateProfile');

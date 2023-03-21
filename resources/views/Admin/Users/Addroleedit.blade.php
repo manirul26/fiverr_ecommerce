@@ -2,17 +2,21 @@
 
 @section('content')
 <h2 class="h3 mb-4">إضافة دور جديد</h2>
-
+@foreach($query as $data)
             <form role="form" method="post" action="{{ route('roles.add') }}" class="p-4 primary_shadow bg-white border_radius_5 mb-5">
             @csrf  
                 <input type="text" name="rolesname" id="rolesname" placeholder="عنوان الدور"
-                    class="search_input product_input input_number mb-5" required >
+                    class="search_input product_input input_number mb-5" value="{{$data->rolesname}}" required >
 
                 <h3 class="mb-3 mb-5">الصلاحيات</h3>
 
                 <div class="row mb-5">
                     <div class="col-md-3">
-                        <label class="d-flex align-items-center mb-4">
+
+
+
+
+                         <label class="d-flex align-items-center mb-4">
                             <input type="checkbox" name="modulename[]" value="البائعون"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
                                 checked>
@@ -21,7 +25,7 @@
                             </span>
                             <p class="mb-0 table_checkbox_highlighted me-2">البائعون</p>
                         </label>
-                        <label class="d-flex align-items-center mb-4">
+                        <label class="d-flex align-items-center mb-4"> 
                             <input type="checkbox" name="modulename[]" value="الموردون"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
                             <span class="table_checkbox checkbox_content">
@@ -37,7 +41,7 @@
                             </span>
                             <p class="mb-0 table_checkbox_highlighted me-2">المنتجات</p>
                         </label>
-                        <label class="d-flex align-items-center mb-4">
+                        <label class="d-flex align-items-center mb-4"> 
                             <input type="checkbox" name="modulename[]" value="إدارة المخزون"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
                             <span class="table_checkbox checkbox_content">
@@ -52,7 +56,7 @@
                                 <i class="fa-solid fa-check"></i>
                             </span>
                             <p class="mb-0 table_checkbox_highlighted me-2">الطلبيات</p>
-                        </label>
+                        </label> 
                     </div>
 
                     <div class="col-md-3">
@@ -177,5 +181,5 @@
                     </div>
                 </div>
             </form>
-
+@endforeach
 @endsection
