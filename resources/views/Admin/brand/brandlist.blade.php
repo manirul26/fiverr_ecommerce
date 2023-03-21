@@ -91,18 +91,25 @@
  aria-hidden="true">
  <div class="modal-dialog modal_dialog popup_xl">
   <div class="modal-content">
-   <form>
+   <form id="productForm" action="{{route('admin.brandedit')}}" method="post"  name="productForm" 
+   class="form-horizontal" enctype="multipart/form-data" class="mb-5">
+    @csrf
+
     <div class="p-3 bg-white primary_shadow b_radius_8 position-relative">
      <h4 class="h5 mb-4">تعديل العلامة</h4>
      <input type="text" name="editbrandname" id="editbrandname" placeholder="تعديل إسم العلامة"
       class="search_input product_input mb-4">
+     <input type="hidden" name="editbrandid" id="editbrandid" placeholder="تعديل إسم العلامة"
+      class="search_input product_input mb-4">
+
      <label for="drag_file" class="drag_file_wrapper drag_file_wrapper_h180">
       <div class="text-center">
-       <img src="images/drag-file-img.svg" class="user-select-none user_drag_none mb-3" alt="">
+       <img src="{{ asset('Asset/admin/images/drag-file-img.svg') }}" class="user-select-none user_drag_none mb-3"
+        alt="">
        <p class="fs_18_sm">إضغط هنا لتحديث لوغو العلامة</p>
       </div>
-      <input type="file" name="" class="d-none" id="drag_file">
-     <!--  <img src="{{ asset('upload/brand/' . $data->brand_image) }}" class="table_brand_logo" alt="" /> -->
+      <input type="file" name="brand_image" accept="image/*" class="d-none" id="drag_file">
+      <!--  <img src="{{ asset('upload/brand/' . $data->brand_image) }}" class="table_brand_logo" alt="" /> -->
      </label>
      <div class="p-3 bg-white primary_shadow b_radius_8 position-relative">
       <div class="form-group">
@@ -117,8 +124,8 @@
      </div>
      <div class="text-start mt-4">
       <button type="submit" class="dashboard_btn dashboard_btn_sm">تحديث</button>
-      <button type="button" class="dashboard_btn dashboard_btn_sm dashboard_btn_link d-inline-block me-2"
-       data-bs-dismiss="modal">إلغاء</button>
+      <button type="button" class="dashboard_btn dashboard_btn_sm dashboard_btn_link d-inline-block me-2 upload-image"
+       data-bs-dismiss="modal" id="btn-save">إلغاء</button>
      </div>
     </div>
    </form>
@@ -128,6 +135,35 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+
+ /* $('body').on('submit', '#productForm', function(e) {
+  e.preventDefault();
+  var actionType = $('#btn-save').val();
+  $('#btn-save').html('Sending..');
+  var formData = new FormData(this);
+  console.log(JSON.stringify(formData));
+
+  $.ajax({
+   type: 'POST',
+   url: "{{ route('admin.brandedit') }}",
+   data: formData,
+   cache: false,
+   contentType: false,
+   processData: false,
+   success: (data) => {
+    alert('ddd');
+    //$('#productForm').trigger("reset");
+    //$('#ajax-product-modal').modal('hide');
+    //$('#btn-save').html('Save Changes');
+    //var oTable = $('#laravel_datatable').dataTable();
+    //oTable.fnDraw(false);
+   },
+   error: function(data) {
+    console.log('Error:', data);
+    $('#btn-save').html('Save Changes');
+   }
+  });
+ }); */
 
  $('body').on('click', '#edit-brand', function() {
   var customer_id = $(this).data('id');
@@ -149,6 +185,7 @@ $(document).ready(function() {
    success: function(response) {
     console.log(response)
     $('#editbrandname').val(response.name);
+    $('#editbrandid').val(response.id);
    }
   });
 
@@ -248,30 +285,34 @@ $(document).ready(function() {
 });
 </script>
 <style>
-    input[type="file"] {
-  display: block;
+input[type="file"] {
+ display: block;
 }
+
 .imageThumb {
-  max-height: 75px;
-  border: 2px solid;
-  padding: 1px;
-  cursor: pointer;
+ max-height: 75px;
+ border: 2px solid;
+ padding: 1px;
+ cursor: pointer;
 }
+
 .pip {
-  display: inline-block;
-  margin: 10px 10px 0 0;
+ display: inline-block;
+ margin: 10px 10px 0 0;
 }
+
 .remove {
-  display: block;
-  background: #444;
-  border: 1px solid black;
-  color: white;
-  text-align: center;
-  cursor: pointer;
+ display: block;
+ background: #444;
+ border: 1px solid black;
+ color: white;
+ text-align: center;
+ cursor: pointer;
 }
+
 .remove:hover {
-  background: white;
-  color: black;
+ background: white;
+ color: black;
 }
 </style>
 @endsection

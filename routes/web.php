@@ -55,6 +55,7 @@ Route::get('admin/brand/edit/{id}',[BrandController::class,'EditBrand']);
 Route::get('/admin/brand/delete/{id}', [BrandController::class,'brandDelete'])->name('deleteBrand');
 Route::post('delete-brand', [BrandController::class, 'deleteBrand'])->name('brand.delete'); 
 Route::post('getid-brand', [BrandController::class, 'edit'])->name('brand.getbrandid'); 
+Route::post('getid-brandupdate', [BrandController::class, 'Updatebrand'])->name('admin.brandedit');
 //Route::get('admin/brand/edit/{id}',[BrandController::class,'edit']);
 
 //addproduct
@@ -69,6 +70,11 @@ Route::post('admin/addproduct/store', [ProductController::class, 'storeProduct']
 Route::get('/admin/stocklist',[ProductController::class, 'stocklist'])->name('admin.stocklist');
 Route::get('/admin/addstock',[ProductController::class, 'addstock'])->name('admin.addstock');
 Route::post('admin/addstock/store', [ProductController::class, 'storeStock'])->name('admin.stockStore');
+Route::get('admin/adstockedit/{id}/edit',[ProductController::class, 'Addstockedit']);
+//Route::post('admin/adstockedit/{id}/edit',[ProductController::class, 'updateStock']);
+Route::post('admin/adstockedit/update', [ProductController::class,'updateStock'])->name('updateStock');
+
+
 
 
 //order

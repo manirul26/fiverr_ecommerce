@@ -14,7 +14,7 @@
   </div>
   <!-- text-editor -->
   <div class="mb-4">
-   <textarea class="textEditor" placeholder="قم بكتابة وصف المنتج" name="des" required></textarea>
+   <textarea class="textEditor" placeholder="قم بكتابة وصف المنتج" name="des" style="width: 100%" required></textarea>
   </div>
   <!--  -->
   <div class="row">
@@ -51,7 +51,7 @@
     <img src="{{ asset('Asset/admin/images/drag-file-img.svg') }}" class="user-select-none user_drag_none mb-3" alt="">
     <p class="fs_18_sm">إضغط هنا لتقوم برفع صور المنتج</p>
    </div>
-   <input type="file" name="product_image" class="d-none" id="drag_file">
+   <input type="file" name="product_image" accept="image/*" class="d-none" id="drag_file">
   </label>
  </div>
  <div class="p-3 bg-white primary_shadow b_radius_8">
@@ -124,7 +124,7 @@
       <p class="fs_18_sm">إضغط هنا لتقوم برفع صورة المعاينة التي تظهر على محركات البحث</p>
      </div>
      <!--  <input type="file" name="seo_image" class="d-none drag_filetwo" id="drag_filetwo" />  -->
-     <input type="file" id="seo_image" name="seo_image"> 
+     <input type="file" id="seo_image" name="seo_image" accept="image/*"> 
     </label>
    </div>
    <div class="col-12 mb-4">

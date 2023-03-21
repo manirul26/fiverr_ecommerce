@@ -70,13 +70,63 @@ class BrandController extends Controller
      $customer = Brand::where($where)->first();
      return Response::json($customer);
     }
-    public function updateBrand(updateBrandRequest $request)
+    public function Updatebrand(Request $request)
     {
-        DB::beginTransaction();
+       /*   $request->validate([
+            'editbrandid' => 'required',
+            'editbrandname' => 'required',
+            'brand_image' => 'required|mimes:png,jpg,jpeg|max:2048',
+        ]);  */
+        if($request->editbrandname == "")
+        {
+             
+                    return redirect()->route("indexBrand")->with('success','Insert the Brand Name');
+        }
+        else if($request->brand_image == "")
+        {
+                $data = array(
+                'name'    =>  $request->editbrandname
+                );
+                $id = DB::table('tbl_brand')->where('id',$request->editbrandid)->update($data);
+                if($id > 0)
+                {
+                   
+                    return redirect()->route("indexBrand")->with('success','update Successfully');
+                }
+                else
+                {
+                    return redirect()->route("indexBrand")->with('error','failed to update');
+                }
+        }
+        else
+        {
+
+              //for brand image
+              $file =$request->file('brand_image');
+              $ext =$file->getClientOriginalExtension();
+              $brand_image =time().'.'.$ext; 
+              $file->move('upload/brand',$brand_image);
+                $data = array(
+                'name'    =>  $request->editbrandname,
+                'brand_image' => $brand_image
+                );
+                $id = DB::table('tbl_brand')->where('id',$request->editbrandid)->update($data);
+                if($id > 0)
+                {
+                    return redirect()->route("indexBrand")->with('success','update Successfully');
+                }
+                else
+                {
+                    return redirect()->route("indexBrand")->with('error','failed to update');
+                }
+        }
+
+/*         echo $request->editbrandid;
+         DB::beginTransaction();
         // $adminInfo = Auth::user();
     
         try{
-            $brand =Brand::find($request->id);
+            $brand =Brand::find($request->editbrandid);
             if($request->hasFile('brand_image')){
                 $path ='upload/brand'.$brand->brand_image;
                 if(File::exists($path)){
@@ -91,7 +141,7 @@ class BrandController extends Controller
             $file->move('upload/brand',$brand_image);
       
        
-        Brand::where('id', $request->id)->update([
+        Brand::where('id', $request->editbrandid)->update([
         'name' => $request->name,
         'brand_image'=>$brand_image,
 
@@ -102,7 +152,7 @@ class BrandController extends Controller
         }catch(\Exception $e){
             DB::rollback();
             return $e;
-        }
+        }  */
     }
    
     public function brandDelete($id)

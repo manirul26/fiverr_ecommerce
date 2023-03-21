@@ -21,7 +21,7 @@ class="p-4 primary_shadow bg-white border_radius_5">
  placeholder="الكمية" class="search_input product_input input_number mb-4" required >
  <!-- text-editor -->
  <div>
-  <textarea class="textEditor" placeholder="قم بكتابة وصف المنتج" required></textarea>
+  <textarea class="textEditor" name="stockdescription" placeholder="قم بكتابة وصف المنتج" required style="width: 100%"></textarea>
  </div>
  <div class="submit_btn_wrapper_1 pb-md-5">
   <div class="text-start">

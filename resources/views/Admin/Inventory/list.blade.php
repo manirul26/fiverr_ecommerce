@@ -12,7 +12,7 @@
                 <div class="px-2 py-3 primary_shadow bg-white border_radius_5 mb-5">
                     <form class="search_bar mb-4">
                         <input type="text" name="" id="" placeholder="بحث عن أسماء منتجات" class="search_input product_input">
-                        <button><img src="images/search-submit-icon.svg" class="user-select-none user_drag_none"
+                        <button><img src="{{ asset('Asset/admin/images/search-submit-icon.svg') }}"" class="user-select-none user_drag_none"
                                 alt=""></button>
                     </form>
     
@@ -33,15 +33,15 @@
                             <tbody>
                                 @foreach($query as $stockdata)
                                 <tr class="content_table_row fw-bold">
-                                    <td class="text-center">{{ $stockdata->id }}x97</td>
-                                    <td class="text-center">الإسم {{ $stockdata->id }}</td>
+                                    <td class="text-center">{{ $stockdata->id }}</td>
+                                    <td class="text-center">{{ $stockdata->productname }}</td>
                                     <td class="text-center">
                                     <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Action
                                     </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ url('Addroleedit/'.$stockdata->id.'/edit') }}">Edit</a></li>
+                                    <ul class="dropdown-menu"> 
+                                        <li><a class="dropdown-item" href="{{ url('admin/adstockedit/'.$stockdata->id.'/edit') }}">Edit</a></li>
                                     </ul>
                                     </div>
                                     </td>
@@ -49,7 +49,7 @@
                                     {{ $stockdata->brandid }}
 
                                     </td>
-                                    <td class="text-center">Supplier</td>
+                                    <td class="text-center"></td>
                                     <td class="text-center">/</td>
                                     <td class="text-center">{{ $stockdata->stock }} </td>
                                     <td class="text-center">{{ $stockdata->date }}</td>

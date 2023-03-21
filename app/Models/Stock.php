@@ -12,6 +12,7 @@ class Stock extends Model
         'productid',
         'date',
         'stock',
+        'stockdescription',
         'created_at',
         'updated_at'
 
