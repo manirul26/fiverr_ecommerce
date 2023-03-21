@@ -13,9 +13,6 @@
                 <div class="row mb-5">
                     <div class="col-md-3">
 
-
-
-
                          <label class="d-flex align-items-center mb-4">
                             <input type="checkbox" name="modulename[]" value="البائعون"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
