@@ -3,128 +3,39 @@
 @section('content')
 <h2 class="h3 mb-4">إضافة دور جديد</h2>
 @foreach($query as $data)
-            <form role="form" method="post" action="{{ route('roles.add') }}" class="p-4 primary_shadow bg-white border_radius_5 mb-5">
+            <form role="form" method="post" action="{{ route('addRolesupdate') }}" 
+            class="p-4 primary_shadow bg-white border_radius_5 mb-5">
             @csrf  
                 <input type="text" name="rolesname" id="rolesname" placeholder="عنوان الدور"
                     class="search_input product_input input_number mb-5" value="{{$data->rolesname}}" required >
-
+<input type="hidden" name="id" value="{{$data->id}}" />
                 <h3 class="mb-3 mb-5">الصلاحيات</h3>
 
                 <div class="row mb-5">
-                    <div class="col-md-3">
+@php
+$md = $data->modulename;
+$sep_tag= explode(',', $md);
+ @endphp                
+@foreach($allmodule as $modulename)
+    <div class="col-md-3">
+    <label class="d-flex align-items-center mb-4">
+    <input type="checkbox" name="modulename[]" value="{{$modulename->id}}"
+    class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
+    
+      @foreach ($sep_tag as $tag) 
+      {{$modulename->id == $tag ? 'checked':''}} 
+      @endforeach
+    >
 
-                         <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="البائعون"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
-                                checked>
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">البائعون</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4"> 
-                            <input type="checkbox" name="modulename[]" value="الموردون"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الموردون</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="المنتجات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">المنتجات</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4"> 
-                            <input type="checkbox" name="modulename[]" value="إدارة المخزون"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">إدارة المخزون</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="الطلبيات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الطلبيات</p>
-                        </label> 
-                    </div>
+    <span class="table_checkbox checkbox_content">
+    <i class="fa-solid fa-check"></i>
+    </span>
+    <p class="mb-0 table_checkbox_highlighted me-2">{{$modulename->name}}</p>
+    </label>
+    </div>
 
-                    <div class="col-md-3">
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="الشحنات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الشحنات</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="إعدادات التوصيل"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">إعدادات التوصيل</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="الضرائب"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الضرائب</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="الإعلانات والوسائط"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الإعلانات والوسائط</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="الإحصائيات والتقارير"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">الإحصائيات والتقارير</p>
-                        </label>
-                    </div>
+@endforeach 
 
-                    <div class="col-md-3">
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="العلامات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">العلامات</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="إعدادات المنتجات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">إعدادات المنتجات</p>
-                        </label>
-                        <label class="d-flex align-items-center mb-4">
-                            <input type="checkbox" name="modulename[]" value="قائمة الإعدادات"
-                                class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted">
-                            <span class="table_checkbox checkbox_content">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">قائمة الإعدادات</p>
-                        </label>
-                    </div>
                 </div>
 
                 <h3 class="mb-3 mb-4">صلاحيات التسيير</h3>
@@ -132,7 +43,9 @@
                     <div class="col-md-3">
                         <label class="d-flex align-items-center mb-4">
                             <input type="radio" name="input_radio_1" class="opacity-0 visually-hidden input_radio_1" 
-                            id="" value="تعيين مدير مصلحة Appointment of a general manager">
+                            id="" value="Appointment of a department manager"
+                            {{ $data->managmentpower=='Appointment of a department manager' ? 'checked':''}}
+                            >
                             <span class="input_radio_wrapper">
                                 <span class="input_radio_active"></span>
                             </span>
@@ -142,7 +55,9 @@
                     <div class="col-md-3">
                         <label class="d-flex align-items-center mb-4">
                             <input type="radio" name="input_radio_1" class="opacity-0 visually-hidden input_radio_1" id=""
-                            value="تعيين مدير عام">
+                            value="Appointment of a general manager"
+                            {{ $data->managmentpower=='Appointment of a general manager' ? 'checked':''}}
+                            >
                             <span class="input_radio_wrapper">
                                 <span class="input_radio_active"></span>
                             </span>
@@ -153,20 +68,21 @@
                         <label class="d-flex align-items-center mb-4">
                             <input type="checkbox"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
-                                name="teamstats" value="إحصائيات الفريق">
+                                name="teamstats" value="إحصائيات الفريق" {{ $data->teamstats=='إحصائيات الفريق' ? 'checked':''}}>
                             <span class="table_checkbox checkbox_content">
                                 <i class="fa-solid fa-check"></i>
                             </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">إحصائيات الفريق</p>
+                            <p class="mb-0 table_checkbox_highlighted me-2"> kk إحصائيات الفريق</p>
                         </label>
                         <label class="d-flex align-items-center mb-4">
                             <input type="checkbox"
                                 class="opacity-0 visually-hidden table_checkbox_input table_checkbox_highlighted"
-                                name="followtheteam" value="متابعة الفريق">
+                                name="followtheteam" value="متابعة الفريق" 
+                                {{ $data->followtheteam=='متابعة الفريق' ? 'checked':''}}>
                             <span class="table_checkbox checkbox_content">
                                 <i class="fa-solid fa-check"></i>
                             </span>
-                            <p class="mb-0 table_checkbox_highlighted me-2">متابعة الفريق</p>
+                            <p class="mb-0 table_checkbox_highlighted me-2"> jj متابعة الفريق</p>
                         </label>
                     </div>
                 </div>

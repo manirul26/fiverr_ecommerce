@@ -69,12 +69,13 @@ class UserController extends Controller
     }
 
     public function Addrole(){
-        return view('Admin.Users.Addrole');
+        $allmodule = DB::table('modules')->get();
+        return view('Admin.Users.Addrole')->with([
+            'allmodule' => $allmodule
+        ]);    
     }
     public function updateProfile(Request $request)
     {
-        echo $request->profile_input_file;
-
 
         if($request->profile_input_file == "")
             {
@@ -212,6 +213,35 @@ class UserController extends Controller
         return redirect()->route("Rolelist")->with('message','Data added Successfully');
 
     }
+    public function addRolesupdate(Request $request)
+    {
+        $request->validate([
+            'rolesname' => 'required',
+            'id' => 'required'
+        ]);
+
+        $data = array(
+            'rolesname' => $request->rolesname,
+            'modulename' => implode(',', (array) $request->modulename),
+            'managmentpower' => $request->input_radio_1,
+            'teamstats' => $request->teamstats,
+            'followtheteam' => $request->followtheteam
+        );
+        $id = DB::table('addroles')->where('id',$request->id)->update($data);
+        if( $id > 0)
+        {
+ 
+            return redirect()->route("Rolelist")->with('success','updated successfully.');
+        }
+        else
+        {
+         
+
+            return redirect()->back()->with("success","Failed to update "); 
+        }
+      
+    }
+
 
     public function updateUser(Request $request, $id)
     {

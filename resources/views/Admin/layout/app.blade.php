@@ -1,6 +1,6 @@
 @php
 $segment1 = Request::segment(1);
-$pages = array('dashboard', 'CreateUser', 'Settingpage','Userlist');
+$pages = array('dashboard', 'CreateUser', 'Settingpage','Userlist','admin-orderlist');
 @endphp
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
@@ -140,7 +140,7 @@ alpha/css/bootstrap.css" rel="stylesheet">
      </a>
     </li>
     <li class="sub-menu">
-     <a href="#">
+     <a href="#" class="@if($segment1=='admin-orderlist') active @endif">
       <span>الطلبيات Order </span>
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
        <g clip-path="url(#clip0_9_6187)">
@@ -285,7 +285,9 @@ alpha/css/bootstrap.css" rel="stylesheet">
      </a>
     </li>
     <li class="sub-menu">
-     <!-- {{ route('Userlist') }} -->
+     <!-- {{ route('Userlist') }} admin/orderlist
+    
+    -->
      <a href="#"
       class="@if($segment1=='Userlist' || $segment1=='CreateUser'|| $segment1=='Addrole' || $segment1=='Rolelist') active @endif">
       <span>الأدوار Role</span>

@@ -5,7 +5,7 @@
 
 <form class="search_bar mb-4">
  <input type="text" name="" id="" placeholder="بحث" class="search_input">
- <button><img src="images/search-submit-icon.svg" class="user-select-none user_drag_none" alt=""></button>
+ <button><img src="{{asset('Asset/admin/images/search-submit-icon.svg')}}" class="user-select-none user_drag_none" alt=""></button>
 </form>
 
 <div class="mb-4">
@@ -40,7 +40,7 @@
    </tr>
   </thead>
   <tbody>
-   <tr class="content_table_row fw-bold">
+   <!-- <tr class="content_table_row fw-bold">
     <td class="px-3">
      <label class="d-flex align-items-center justify-content-center">
       <input type="checkbox" class="opacity-0 visually-hidden table_checkbox_input">
@@ -65,7 +65,7 @@
       </ul>
      </div>
     </td>
-   </tr>
+   </tr> -->
 
 
   </tbody>

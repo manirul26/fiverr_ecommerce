@@ -31,6 +31,7 @@ Route::get('CreateUser',[UserController::class, 'CreateUser'])->name('admin.Crea
 //Route::post('customRegistration',[UserController::class, 'customRegistration']);
 Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom'); 
 Route::post('add-roles', [UserController::class, 'addRoles'])->name('roles.add'); 
+Route::post("updateroles",[UserController::class,'addRolesupdate'])->name('addRolesupdate');
 Route::post('delete-roles', [UserController::class, 'deleteRoles'])->name('roles.delete'); 
 Route::post('delete-users', [UserController::class, 'deleteUsers'])->name('users.delete'); 
 Route::get('Userlist',[UserController::class, 'Userlist'])->name('Userlist');
@@ -78,7 +79,7 @@ Route::post('admin/adstockedit/update', [ProductController::class,'updateStock']
 
 
 //order
-Route::get('/admin/orderlist',[Ordercontroller::class, 'orderlist'])->name('admin.orderlist');
+Route::get('/admin-orderlist',[Ordercontroller::class, 'orderlist'])->name('admin.orderlist');
 
 
 // UserData update
